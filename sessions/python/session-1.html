@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="../../static/js/pdfobject.js"></script>
-        <style>
-            #pdf {height: 100vh;}
-        </style>
-    </head>
-    <body>
-        <!--
+
+<head>
+    <script src="../../static/js/pdfobject.js"></script>
+    <style>
+        #pdf {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
             Nothing special here :)
         -->
-        <div id="pdf"></div>
-        <script>PDFObject.embed("../../static/pdf/python/session1.pdf", "#pdf");</script>
-    </body>
+    <div id="pdf"></div>
+    <script>PDFObject.embed("../../static/pdf/python/session1.pdf", "#pdf");</script>
+</body>
+
 </html>
