@@ -1,3 +1,31 @@
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+
+#  bundle exec jekyll serve --livereload
+
+
+
+
+# Site Settings
+title: <Bre@kTheLoop/>
+# email: your-email@example.com
+description: >-
+  Bre@kTheLoop, GCETTS is a community of coding and CompSci enthusiasts 
+  who believes in open learning and sharing knowledge.
+baseurl: ""
+url: "https://btl-gcetts.github.io"
+github_username:  btl-gcetts
+
+
+
+
+# Build Settings
 lsi: false
 safe: true
 source: web
@@ -8,4 +36,17 @@ gist:
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
+# TODO: change theme to something custom
 theme: jekyll-theme-hacker
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
