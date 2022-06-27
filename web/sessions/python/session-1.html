@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <script src="../../static/js/pdfobject.js"></script>
     <style>
         #pdf {
             height: 100vh;
+            width: 100vw;
         }
     </style>
     <title>Session 1</title>
@@ -15,8 +15,12 @@
     <!--
             Nothing special here :)
         -->
-    <div id="pdf"></div>
-    <script>PDFObject.embed("../../static/pdf/python/session1.pdf", "#pdf");</script>
+    <div id="pdf-container">
+        <iframe src="https://drive.google.com/file/d/1GZPnqy0jKxcon5uvGhvFEuZMQOeq1S4n/preview"
+                allow="autoplay"
+                id="pdf">
+        </iframe>
+    </div>
 </body>
 
 </html>
