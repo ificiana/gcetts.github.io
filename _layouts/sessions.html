@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<div id="pdf-container">
+    <h1>{{ page.title }}</h1>
+    {% if page.YT %}
+    <style>
+        #video {
+            height: 50vh;
+            width: 100%;
+        }
+    </style>
+    <iframe width="100%" height="50vh" frameborder="0"
+        src="{{'https://www.youtube.com/embed/'| append:page.YT}}"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        id="video">
+    </iframe>
+    {% endif %}
+    {% if page.fileID %}
+    <style>
+        #pdf {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+    <iframe
+        src="{{'https://drive.google.com/file/d/'| append:page.fileID | append: '/preview'}}" 
+        allow="autoplay"
+        id="pdf">
+    {% else %}
+    PDF for the current session isn't published yet.
+    {% endif %}
+    </iframe>
+</div>
