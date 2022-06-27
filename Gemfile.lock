@@ -261,7 +261,6 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   http_parser.rb (~> 0.6.0)
-  jekyll-theme-hacker (~> 0.2.0)
   kramdown-parser-gfm
   minima (~> 2.0)
   tzinfo (~> 1.2)
