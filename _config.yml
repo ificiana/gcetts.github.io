@@ -13,7 +13,7 @@
 
 
 # Site Settings
-title: <Bre@kTheLoop/>
+title: Bre@kTheLoop
 # email: your-email@example.com
 description: >-
   Bre@kTheLoop, GCETTS is a community of coding and CompSci enthusiasts 
@@ -28,7 +28,7 @@ github_username:  btl-gcetts
 # Build Settings
 lsi: false
 safe: true
-source: web
+source: .
 incremental: false
 highlighter: rouge
 gist:
