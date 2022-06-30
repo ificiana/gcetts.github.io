@@ -1,20 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: " en-US" }}">
 
-<div id="container">
-    <h1>{{ page.title }}</h1>
-    {{ content }}
-    {% if page.fileID %}
+<head>
+    {% include head-normalize.html %}
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    {% seo %}
+    {% include head-custom.html %}
+
     <style>
-        #pdf {
-            height: 100vh;
+        #main-content {
             width: 100%;
         }
+        .inner {
+            position: relative;
+            width: 80%;
+        }
     </style>
-    <iframe
-        src="{{'https://drive.google.com/file/d/'| append:page.fileID | append: '/preview'}}" 
-        allow="autoplay"
-        id="pdf">
-    {% else %}
-    PDF for the current session isn't published yet.
-    {% endif %}
-    </iframe>
-</div>
+</head>
+
+<body>
+    <div id="content-wrapper">
+        <div class="inner">
+            <div id="main-content">
+                <h1>{{ page.title }}</h1>
+                {{ content }}
+                {% if page.fileID %}
+                <style>
+                    #pdf {
+                        height: 100vh;
+                        width: 100%;
+                    }
+                </style>
+                <iframe src="{{'https://drive.google.com/file/d/'| append:page.fileID | append: '/preview'}}" allow="autoplay"
+                    id="pdf">
+                    {% else %}
+                    PDF for the current session isn't published yet.
+                    {% endif %}
+                </iframe>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
