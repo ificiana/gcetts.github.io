@@ -1,9 +1,11 @@
-<!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
-
 <!-- Setup Google Analytics -->
 {% include head-custom-google-analytics.html %}
-
-<!-- You can set your favicon here -->
-<!-- link rel="shortcut icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}" -->
-
-<!-- end custom head snippets -->
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}"/>
+<!-- bulma -->
+<link rel="preload" href="{{ '/static/css/bulma.css' | relative_url }}" as="style">
+<link rel="stylesheet" href="{{ '/static/css/bulma.css' | relative_url }}">
+<script defer="" type="text/javascript"
+    src="/static/extensions/bulma-navbar-burger.js"></script>
+<script defer="" type="text/javascript" 
+src="/static/extensions/bulma-dropdown.js"></script>
