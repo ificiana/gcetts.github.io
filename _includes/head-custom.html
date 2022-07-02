@@ -14,3 +14,14 @@ src="{{ '/static/extensions/bulma-dropdown.js' | relative_url }}"></script>
 <script defer src="https://kit.fontawesome.com/d7b9dc4a33.js" crossorigin="anonymous"></script>
 <!-- preloads -->
 <link rel="preload" href="{{ '/assets/images/logo.png' | relative_url }}" as="image">
+{% if page.preloads %}
+    {% for as_h in page.preloads %}
+    {% for asset in as_h[1] %}
+        {% if as_h[0] == "gd-image" %}
+        <link rel="preload" href="{{ 'https://drive.google.com/uc?id=' |append: asset }}" as="image">
+        {% else %}
+        <link rel="preload" href="{{ asset }}" as="{{ as_h[0] }}">
+        {% endif %}
+    {% endfor %}
+    {% endfor %}
+{% endif %}
