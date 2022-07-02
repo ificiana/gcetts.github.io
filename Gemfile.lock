@@ -260,6 +260,7 @@ DEPENDENCIES
   activesupport (~> 4.2)
   github-pages
   http_parser.rb (~> 0.6.0)
+  jekyll-redirect-from
   kramdown-parser-gfm
   minima (~> 2.0)
   tzinfo (~> 1.0)
