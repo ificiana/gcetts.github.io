@@ -1,8 +1,10 @@
 ---
 layout: sessions
-title: Session 1
-fileID: 1GZPnqy0jKxcon5uvGhvFEuZMQOeq1S4n
+event: pyws22
+id: 0
+title: >
+    Python: Introduction and Working with numbers
 ---
 
-### Python: Introduction and Working with numbers
 ### Video Link: None
+### Notebook: [Collab link](https://colab.research.google.com/drive/1VuFxVC5EkcsMI_ogoYHQ7tFAX8t-dV2P)
