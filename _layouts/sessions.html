@@ -1,90 +1,60 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: " en-US" }}">
+---
+layout: default
+---
 
-<head>
-    {% include head-normalize.html %}
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-    {% seo %}
-    {% include head-custom.html %}
+{% if page.list %}
+<h1> Sessions List </h1>
 
-    <style>
-        #main-content {
-            width: 100%;
-        }
-        .inner {
-            position: relative;
-            width: 80%;
-        }
-    </style>
-</head>
-
-<body>
-    {% include header.html %}
-    <div id="content-wrapper">
-        <div class="inner">
-            <div id="main-content">
-                {% if page.list %}
-                <h1> Sessions List </h1>
-                
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><abbr title="Serial Number">Sl. No.</abbr></th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Session Link</th>
-                        </tr>
-                    </thead>
-                    {% assign sessions = site.data.sessions[page.event] %}
-                    {% for session in sessions %}
-                    {% assign i = forloop.index0 %}
-                    {% assign j = forloop.index %}
-                    {% assign event = site.data.events[page.event] %}
-                    <tr>
-                        <td>{{ j }}</td>
-                        <td>{% unless sessions[i].date %}
-                            <abbr title="To Be Announced">TBA</abbr>
-                            {% else %} {{ sessions[i].date }} {% endunless %}
-                        </td>
-                        <td>{% unless sessions[i].time %}
-                            <abbr title="To Be Announced">TBA</abbr>
-                            {% else %} {{ sessions[i].date }} {% endunless %}
-                        </td>
-                        <td><a href="{{ 'web/sessions/' 
-                            |append: event.year |append: '/' 
-                            |append: event.alias
-                            |append: '/session-'
-                            |append: j | relative_url }}">
-                                {{ session.title }}
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {{ content }}
-                {% else %}
-                <h1>{{ page.title }}</h1>
-                {{ content }}
-                {% if site.data.sessions[page.event][page.id].pdf %}
-                <style>
-                    #pdf {
-                        height: 100vh;
-                        width: 100%;
-                    }
-                </style>
-                <iframe src="{{'https://drive.google.com/file/d/'| append:site.data.sessions[page.event][page.id].pdf | append: '/preview'}}" allow="autoplay"
-                    id="pdf">
-                    {% else %}
-                    PDF for the current session isn't published yet.
-                    {% endif %}
-                </iframe>
-                {% endif %}
-            </div>
-            {% include footer.html %}
-        </div>
-    </div>
-</body>
-
-</html>
+<table class="table">
+    <thead>
+        <tr>
+            <th><abbr title="Serial Number">Sl. No.</abbr></th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Session Link</th>
+        </tr>
+    </thead>
+    {% assign sessions = site.data.sessions[page.event] %}
+    {% for session in sessions %}
+    {% assign i = forloop.index0 %}
+    {% assign j = forloop.index %}
+    {% assign event = site.data.events[page.event] %}
+    <tr>
+        <td>{{ j }}</td>
+        <td>{% unless sessions[i].date %}
+            <abbr title="To Be Announced">TBA</abbr>
+            {% else %} {{ sessions[i].date }} {% endunless %}
+        </td>
+        <td>{% unless sessions[i].time %}
+            <abbr title="To Be Announced">TBA</abbr>
+            {% else %} {{ sessions[i].date }} {% endunless %}
+        </td>
+        <td><a href="{{ 'web/sessions/' 
+            |append: event.year |append: '/' 
+            |append: event.alias
+            |append: '/session-'
+            |append: j | relative_url }}">
+                {{ session.title }}
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{{ content }}
+{% else %}
+<h1>{{ page.title }}</h1>
+{{ content }}
+{% if site.data.sessions[page.event][page.id].pdf %}
+<style>
+    #pdf {
+        height: 100vh;
+        width: 100%;
+    }
+</style>
+<iframe src="{{'https://drive.google.com/file/d/'| append:site.data.sessions[page.event][page.id].pdf | append: '/preview'}}" allow="autoplay"
+    id="pdf">
+    {% else %}
+    PDF for the current session isn't published yet.
+    {% endif %}
+</iframe>
+{% endif %}
