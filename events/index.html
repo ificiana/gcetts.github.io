@@ -1,0 +1,48 @@
+---
+layout: pages
+---
+
+{% for event_hash in site.data.events %}
+{% assign event=event_hash[1] %}
+{% unless event.hidden %}
+<div class="box">
+    <h1> {{ event.title }} </h1>
+    <div class="card">
+        <div class="card-image">
+            <a href="{{ 'events/' |append:event_hash[0] |relative_url}}">
+            <figure class="image is-4by3">
+            <img src="{{ site.cdn |append: '/events/' 
+                                |append: event.year |append:'/'
+                                |append: event_hash[0] |append:'/'
+                                |append: event.img }}"
+                    alt="{{ event.title }}">
+            </figure>
+            </a>
+        </div>
+        <div class="card-content">
+            <div class="media">
+                {% for member_hash in event.members %}
+                {% assign member=site.data.members[member_hash] %}
+                <div class="media-left">
+                    <figure class="image is-48x48">
+                    <img src="{{ 'https://github.com/' |append: member.github |append: '.png' }}"
+                        alt="{{ member.github }}">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <p class="title is-4">{{ member.name }}</p>
+                    <p class="subtitle is-6">@{{ member.github }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="content">
+                {{ event.description }}
+            </div>
+            <p class="has-text-right">
+                <a href="{{ 'events/' |append:event_hash[0] |relative_url}}"> View </a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endunless %}
+{% endfor %}
