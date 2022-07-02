@@ -20,6 +20,7 @@ description: >-
   who believes in open learning and sharing knowledge.
 baseurl: ""
 url: "https://btl-gcetts.github.io"
+cdn: "https://m1-btlcdn.netlify.app"
 github_username:  btl-gcetts
 email: breaktheloop01@gmail.com
 
@@ -37,8 +38,8 @@ gist:
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
-# TODO: change theme to something custom
-# theme: jekyll-theme-architect
+plugins:
+  - jekyll-redirect-from
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
