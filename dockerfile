@@ -9,3 +9,8 @@ RUN apk add --no-cache build-base gcc cmake git
 
 # Update bundler, install Jekyll
 RUN gem update bundler && gem install bundler jekyll
+
+FROM python:3
+
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir pymongo[srv]
