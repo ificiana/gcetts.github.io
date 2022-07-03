@@ -1,0 +1,68 @@
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create _data directory
+        run: |
+          mkdir -p _data
+
+      - name: Install pymongo
+        run: |
+          pip install pymongo[srv]
+
+      - name: Create data files
+        run: |
+          python script/import-data ${{ secrets.MONGO_URL }}
+      
+      - name: Build pages with jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: .
+          destination: ./_site
+          future: false
+          verbose: true
+          token: ${{ github.token }}
+          
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@main
+        with: 
+          path: ./_site
+          retention-days: 1
+          
+      - name: run tar
+        run: |
+          tar \
+          --dereference --hard-dereference \
+          --directory ./_site \
+          -cvf /home/runner/work/_temp/artifact.tar \
+          --exclude=.git \
+          .
+      
+      - uses: actions/upload-artifact@main
+        with:
+          name: github-pages
+          path: /home/runner/work/_temp/artifact.tar
+          retention-days: 1
+          if-no-files-found: warn
+          
+      - name: Deploy
+        uses: actions/deploy-pages@v1
+        with:
+          emit_telemetry: true
+          token: ${{ github.token }}
+          timeout: 600000
+          error_count: 10
+          reporting_interval: 5000
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
