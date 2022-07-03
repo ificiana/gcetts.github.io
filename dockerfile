@@ -13,4 +13,5 @@ RUN gem update bundler && gem install bundler jekyll
 FROM python:3
 
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir pymongo[srv]
+    pip install --no-cache-dir pymongo[srv] && \
+    pip install --no-cache-dir pyyaml
