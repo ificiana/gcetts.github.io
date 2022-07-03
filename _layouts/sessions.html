@@ -27,7 +27,7 @@ layout: default
         </td>
         <td>{% unless sessions[i].time %}
             <abbr title="To Be Announced">TBA</abbr>
-            {% else %} {{ sessions[i].date }} {% endunless %}
+            {% else %} {{ sessions[i].time }} {% endunless %}
         </td>
         <td><a href="{{ 'web/sessions/' 
             |append: event.year |append: '/' 
