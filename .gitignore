@@ -5,3 +5,5 @@ _site/
 .devcontainer/
 vendor
 .idea/
+.dev/
+.devcontainer/
