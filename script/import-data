@@ -19,6 +19,16 @@ if args.debug:
     print(f"Using database: {args.database}")
 client = pymongo.MongoClient(f"{args.mongo_url}")
 db = client[args.database]
+
+def write(_d, _dir, _file):
+    with _dir.joinpath(f'{_file}.yml').open('w') as yaml_file:
+                if args.debug:
+                    print(f"Creating data files {'for:' + doc['id'] if 'id' in doc else ''}")
+                yaml.dump(_d, yaml_file, default_flow_style=False)
+                if args.debug:
+                    print(f"Successfully created data files {'for:' + doc['id'] if 'id' in doc else ''}")
+
+
 for col in db.list_collection_names():
     if args.debug:
         print(f"Processing column: {col}")
@@ -31,9 +41,8 @@ for col in db.list_collection_names():
     col = db[col]
     for doc in col.find():
         d = {k: v for k, v in doc.items() if k not in ("id", "_id")}
-        with _dir.joinpath(f'{doc["id"]}.yml').open('w') as yaml_file:
-            if args.debug:
-                print(f"Creating data files {'for:' + doc['id'] if 'id' in doc else ''}")
-            yaml.dump(d, yaml_file, default_flow_style=False)
-            if args.debug:
-                print(f"Successfully created data files {'for:' + doc['id'] if 'id' in doc else ''}")
+        if "id" in doc:
+            write(d, _dir, doc["id"])
+        else:
+            for i, j in d.items():
+                write(j, _dir, i)
