@@ -19,7 +19,7 @@ jobs:
 
       - name: Create data files
         run: |
-          python script/import-data ${{ secrets.MONGO_URL }}
+          python script/import-data ${{ secrets.MONGO_URL }} --debug
       
       - name: Build pages with jekyll
         uses: actions/jekyll-build-pages@v1
