@@ -1,5 +1,7 @@
 on:
   push:
+  schedule:
+    - cron: "0 7-23/6,12-20/4 * * *"
 
 jobs:
   build:
@@ -67,3 +69,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
+          commit_message: Update site data
