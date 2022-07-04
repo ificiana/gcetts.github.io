@@ -32,7 +32,7 @@ with pymongo.MongoClient(f"{args.mongo_url}") as client:
 
     for col in db.list_collection_names():
         if args.debug:
-            print(f"Processing column: {col}")
+            print(f"Processing collection: {col}")
         _dir = Path("_data/")
         if col != "top":
             _dir = _dir.joinpath(col)
