@@ -23,14 +23,14 @@ layout: pages
             <div class="columns is-desktop">
                 {% for member_hash in event.members %}
                 {% assign member=site.data.members[member_hash] %}
-                <div class="media column">
-                    <div class="media-left">
+                <div class="column">
+                    <div>
                         <figure class="image is-48x48">
                         <img src="{{ 'https://github.com/' |append: member.github |append: '.png' }}"
                             alt="{{ member.github }}">
                         </figure>
                     </div>
-                    <div class="media-content">
+                    <div>
                         <p class="title is-4">{{ member.name }}</p>
                         <p class="subtitle is-6">@{{ member.github }}</p>
                     </div>
