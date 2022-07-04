@@ -17,32 +17,33 @@ args = parser.parse_args()
 
 if args.debug:
     print(f"Using database: {args.database}")
-client = pymongo.MongoClient(f"{args.mongo_url}")
-db = client[args.database]
 
-def write(_d, _dir, _file):
-    with _dir.joinpath(f'{_file}.yml').open('w') as yaml_file:
-                if args.debug:
-                    print(f"Creating data files {'for:' + doc['id'] if 'id' in doc else ''}")
-                yaml.dump(_d, yaml_file, default_flow_style=False)
-                if args.debug:
-                    print(f"Successfully created data files {'for:' + doc['id'] if 'id' in doc else ''}")
+with pymongo.MongoClient(f"{args.mongo_url}") as client:
+    db = client[args.database]
+
+    def write(_d, _dir, _file):
+        with _dir.joinpath(f'{_file}.yml').open('w') as yaml_file:
+                    if args.debug:
+                        print(f"Creating data files {'for:' + doc['id'] if 'id' in doc else ''}")
+                    yaml.dump(_d, yaml_file, default_flow_style=False)
+                    if args.debug:
+                        print(f"Successfully created data files {'for:' + doc['id'] if 'id' in doc else ''}")
 
 
-for col in db.list_collection_names():
-    if args.debug:
-        print(f"Processing column: {col}")
-    _dir = Path("_data/")
-    if col != "top":
-        _dir = _dir.joinpath(col)
-        Path.mkdir(_dir, exist_ok=True)
+    for col in db.list_collection_names():
         if args.debug:
-            print(f"Made directory: {_dir}")
-    col = db[col]
-    for doc in col.find():
-        d = {k: v for k, v in doc.items() if k not in ("id", "_id")}
-        if "id" in doc:
-            write(d, _dir, doc["id"])
-        else:
-            for i, j in d.items():
-                write(j, _dir, i)
+            print(f"Processing column: {col}")
+        _dir = Path("_data/")
+        if col != "top":
+            _dir = _dir.joinpath(col)
+            Path.mkdir(_dir, exist_ok=True)
+            if args.debug:
+                print(f"Made directory: {_dir}")
+        col = db[col]
+        for doc in col.find():
+            d = {k: v for k, v in doc.items() if k not in ("id", "_id")}
+            if "id" in doc:
+                write(d, _dir, doc["id"])
+            else:
+                for i, j in d.items():
+                    write(j, _dir, i)
