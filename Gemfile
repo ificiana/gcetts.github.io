@@ -35,6 +35,6 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 gem "webrick", "~> 1.7"
 
 # https://github.com/advisories/GHSA-j96r-xvjq-r9pg
-gem "activesupport", "~> 4.2"
+gem "activesupport", "~> 6.0"
 
 gem 'jekyll-redirect-from'
