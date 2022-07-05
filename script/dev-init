@@ -3,7 +3,7 @@
 
 
 DEBUG=true
-# change this to `true` for production
+# change this to `false` for production
 
 
 apk -U upgrade
