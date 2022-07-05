@@ -1,4 +1,6 @@
 _site/
+# we use mongodb
+_data/
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
