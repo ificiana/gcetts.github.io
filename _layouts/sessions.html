@@ -29,9 +29,14 @@ layout: default
             <abbr title="To Be Announced">TBA</abbr>
             {% else %} {{ sessions[i].time }} {% endunless %}
         </td>
+        {% if event.alias %}
+        {% assign alias=event.alias %}
+        {% else %}
+        {% assign alias=page.event %}
+        {% endif %}
         <td><a href="{{ 'web/sessions/' 
             |append: event.year |append: '/' 
-            |append: event.alias
+            |append: alias
             |append: '/session-'
             |append: j | relative_url }}">
                 {{ session.title }}
