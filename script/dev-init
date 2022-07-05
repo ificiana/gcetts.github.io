@@ -4,4 +4,9 @@ apk update
 bundler install
 bundler update
 export $(cat .env | xargs)
+if "${DEBUG}"
+then
+python script/import-data "${MONGO_URL}" mongo-debug --debug
+else
 python script/import-data "${MONGO_URL}" --debug
+fi
