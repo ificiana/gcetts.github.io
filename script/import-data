@@ -34,6 +34,7 @@ with pymongo.MongoClient(f"{args.mongo_url}") as client:
         if args.debug:
             print(f"Processing collection: {col}")
         _dir = Path("_data/")
+        Path.mkdir(_dir, exist_ok=True)
         if col != "top":
             _dir = _dir.joinpath(col)
             Path.mkdir(_dir, exist_ok=True)
