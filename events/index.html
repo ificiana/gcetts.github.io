@@ -4,41 +4,17 @@ layout: pages
 
 {% for event_hash in site.data.events %}
 {% assign event=event_hash[1] %}
-{% if event_hash[0]=="test" and site.data.events.size == 1 %}
-{% assign empty=true %}
-{% endif %}
-
-{% if empty or event.hidden==false %}
+{% unless event.hidden %}
 <div class="box">
     <h1> {{ event.title }} </h1>
     <div class="card">
         <div class="card-image">
             <a href="{{ 'events/' |append:event_hash[0] |relative_url}}">
             <figure class="image is-4by3">
-            <img src="
-            {% if event.img %}
-                {% assign prefx = event.img | slice:7 %}
-                {% capture link %}
-                    {% if prefx=='https://' %}
-                    true
-                    {% assign prefix = prefx | slice:7 %}
-                    {% elsif prefix  == 'http://' %}
-                    true
-                    {% else %}
-                    false
-                    {% endif %}
-                {% endcapture %}
-                {% if link %}
-                    {{ event.img }}
-                {% else %}
-                    {{ site.cdn |append: '/events/' 
+            <img src="{{ site.cdn |append: '/events/' 
                                 |append: event.year |append:'/'
                                 |append: event_hash[0] |append:'/'
-                                |append: event.img }}
-                {% endif %}
-            {% else %}
-                https://placehold.jp/eeeeee/cccccc/240x180.png?text=No%20Image
-            {% endif %}"
+                                |append: event.img }}"
                     alt="{{ event.title }}">
             </figure>
             </a>
@@ -70,6 +46,5 @@ layout: pages
         </div>
     </div>
 </div>
-{% endif %}
-
+{% endunless %}
 {% endfor %}
