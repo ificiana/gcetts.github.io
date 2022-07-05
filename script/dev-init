@@ -1,12 +1,18 @@
 #!/usr/bin/sh
 
-apk update
+apk -U upgrade
 bundler install
 bundler update
 export $(cat .env | xargs)
-if "${DEBUG}"
+if $DEBUG
+if [$MONGO_URL -eq mongodb+srv://debug:0q2UK7nhE5avsWe7@btl.ayz8uut.mongodb.net/?retryWrites=true&w=majority]
 then
-python script/import-data "${MONGO_URL}" mongo-debug --debug
+    echo this url only works for debug
+    echo ask owners for admin password to make changes to the production database
+fi
+then
+    python script/import-data "${MONGO_URL}" mongo-debug --debug
+    python script/generate-tests
 else
-python script/import-data "${MONGO_URL}" --debug
+    python script/import-data "${MONGO_URL}" --debug
 fi
