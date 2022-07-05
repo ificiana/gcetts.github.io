@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+
+import argparse
+import os
+from pathlib import Path
+
+import pymongo
+import yaml
+
+parser = argparse.ArgumentParser(description='Create data files')
+parser.add_argument('mongo_url', type=str,
+                    help='mongodb url')
+parser.add_argument('database', nargs="?", type=str,
+                    help='mongodb database', default="mongo")
+parser.add_argument('--debug', action='store_const',
+                    help='enable debug', const=True, default=False)
+args = parser.parse_args()
+
+if args.debug:
+    print(f"Using database: {args.database}")
+
+with pymongo.MongoClient(f"{args.mongo_url}") as client:
+    db = client[args.database]
+
+    def upload_files(_dir):
+        print(_dir)
+        for f in os.walk(_dir):
+            print(f)
+            _dir = Path(f[0])
+            if f[0] == "_data":
+                col = db["top"]
+                for file in f[2]:
+                    if file.endswith(".yml"):
+                        with _dir.joinpath(file).open("r") as yml:
+                            t = yaml.safe_load(yml)
+                            t = {file[:-4]: t}
+                            t = col.update_one({file[:-4]: { "$exists" : "true" }}, 
+                                {"$set": t},
+                                upsert=True,
+                            )
+                            print(f"Successfully uploaded data: {file}")
+                            
+            else:
+                col = db[f[0][6:]]
+                for file in f[2]:
+                    if file.endswith(".yml"):
+                        with _dir.joinpath(file).open("r") as yml:
+                            t = yaml.safe_load(yml)
+                            if type(t)=="dict":
+                                t["id"] = file[:-4]
+                                t = col.update_one({"id": file[:-4]}, 
+                                    {"$set": t},
+                                    upsert=True,
+                                )
+                            else:
+                                t = {file[:-4]: t}
+                                t = col.update_one({file[:-4]: { "$exists" : "true" }}, 
+                                    {"$set": t},
+                                    upsert=True,
+                                )
+                            print(f"Successfully uploaded data: {file}")
+    upload_files(Path("_data/"))
+    
