@@ -9,3 +9,7 @@ vendor
 .idea/
 .dev/
 .devcontainer/
+
+# ignore tests
+events/test
+web/sessions/test
