@@ -7,4 +7,4 @@ title: >
 ---
 
 ### Video Link: None
-### Notebook: [Collab link](https://colab.research.google.com/drive/1VuFxVC5EkcsMI_ogoYHQ7tFAX8t-dV2P)
+### Notebook: [Colab link](https://colab.research.google.com/drive/1VuFxVC5EkcsMI_ogoYHQ7tFAX8t-dV2P)
