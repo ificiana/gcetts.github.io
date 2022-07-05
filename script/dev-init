@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+apk update
+bundler install
+bundler update
+export $(cat .env | xargs)
+python script/import-data "${MONGO_URL}" --debug
