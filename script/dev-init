@@ -1,18 +1,24 @@
 #!/usr/bin/sh
 
+
+
+DEBUG=true
+# change this to `true` for production
+
+
 apk -U upgrade
 bundler install
 bundler update
-export $(cat .env | xargs)
+# export $(cat .env | xargs)
 if $DEBUG
-if [$MONGO_URL -eq mongodb+srv://debug:0q2UK7nhE5avsWe7@btl.ayz8uut.mongodb.net/?retryWrites=true&w=majority]
 then
+    MONGO_URL="mongodb+srv://debug:0q2UK7nhE5avsWe7@btl.ayz8uut.mongodb.net/?retryWrites=true&w=majority"
+    echo $MONGO_URL
     echo this url only works for debug
     echo ask owners for admin password to make changes to the production database
-fi
-then
-    python script/import-data "${MONGO_URL}" mongo-debug --debug
+    python script/import-data "$MONGO_URL" mongo-debug --debug
     python script/generate-tests
 else
-    python script/import-data "${MONGO_URL}" --debug
+    # export MONGO_URL=
+    python script/import-data "$MONGO_URL" --debug
 fi
