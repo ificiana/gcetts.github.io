@@ -6,5 +6,12 @@ title: >
     Python: Introduction and Working with numbers
 ---
 
-### Video Link: None
-### Notebook: [Colab link](https://colab.research.google.com/drive/1VuFxVC5EkcsMI_ogoYHQ7tFAX8t-dV2P)
+{% assign session=site.data.sessions[page.event][page.id] %}
+
+### Video Link: {% if session.yt %} 
+<a href="https://youtu.be/{{ session.yt }}">{{ page.title }}</a>
+    {% else %} None 
+    {% endif %}
+### Notebook: [Colab link](https://colab.research.google.com/drive/{{ session.colab }})
+### Resourses:
+- [Python Official Website](http://python.org)
