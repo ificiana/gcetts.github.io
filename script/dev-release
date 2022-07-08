@@ -1,0 +1,16 @@
+#!/usr/bin/sh
+
+
+
+# Use admin password
+MONGO_PASSWORD=
+
+
+
+apk -U upgrade
+bundler install
+bundler update
+
+MONGO_URL="mongodb+srv://admin:$MONGO_PASSWORD@btl.ayz8uut.mongodb.net/?retryWrites=true&w=majority"
+echo Upload/Update data
+python script/upload-data "$MONGO_URL" --debug
