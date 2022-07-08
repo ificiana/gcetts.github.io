@@ -56,6 +56,7 @@ layout: default
         width: 100%;
     }
 </style>
+<h3>Session PDF:</h3>
 <iframe src="{{'https://drive.google.com/file/d/'| append:site.data.sessions[page.event][page.id].pdf | append: '/preview'}}" allow="autoplay"
     id="pdf">
     {% else %}
