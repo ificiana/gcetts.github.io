@@ -3,22 +3,27 @@
 
 
 DEBUG=true
+# DEBUG=false
 # change this to `false` for production
+
+# defaults to debug password, change this to admin password to make changes to the main database
+MONGO_PASSWORD=0q2UK7nhE5avsWe7
+# MONGO_PASSWORD=
 
 
 apk -U upgrade
 bundler install
 bundler update
-# export $(cat .env | xargs)
+
 if $DEBUG
 then
-    MONGO_URL="mongodb+srv://debug:0q2UK7nhE5avsWe7@btl.ayz8uut.mongodb.net/?retryWrites=true&w=majority"
-    echo $MONGO_URL
+    MONGO_URL="mongodb+srv://debug:$MONGO_PASSWORD@btl.ayz8uut.mongodb.net/?retryWrites=true&w=majority"
+    echo "$MONGO_URL"
     echo this url only works for debug
     echo ask owners for admin password to make changes to the production database
     python script/import-data "$MONGO_URL" mongo-debug --debug
     python script/generate-tests
 else
-    # export MONGO_URL=
+    MONGO_URL="mongodb+srv://admin:$MONGO_PASSWORD@btl.ayz8uut.mongodb.net/?retryWrites=true&w=majority"
     python script/import-data "$MONGO_URL" --debug
 fi
