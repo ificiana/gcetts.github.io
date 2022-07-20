@@ -23,4 +23,4 @@ Using Jekyll just makes development very easy with its templating features and f
 For the other part of the question, I just thought it'd be a better idea to keep some data private and kept within a few hands. This is a prevention measure against possible exploits. So instead of using the default `_data` directory, we use MongoDB to store the data and the `_data` directory is automatically generated before the page is built and published. In the future, we might be able to implement something more conventional (like jam stack, Django) instead of using APIs and dynamic hosting.
 
 ### For Support and Clarification
-Contact me (@ificiana) via the email listed on my profile or other maintainers of this repository.
+Contact me ([@ificiana](https://github.com/ificiana)) via the email listed on my profile or other maintainers of this repository.
