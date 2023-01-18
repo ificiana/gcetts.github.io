@@ -5,8 +5,7 @@
 Website built by and for the BreakTheLoop community.
 
 ### Setup
-Fork the repository and clone it into your local system. Assuming docker is available in your system, build a container using the `dockerfile` 
-and then run `sh script/dev-init`. This should upgrade the system and dependencies if needed.
+Fork the repository and clone it into your local system. Assuming docker is available in your system, build a container using the `dockerfile` (I use VS Code's remote containers extension) and then run `sh script/dev-init`. This should upgrade the system and dependencies if needed.
 After you make the changes *manually* make sure the test pages are working.
 We currently don't have an automated testing system, if you think you can contribute and wanna volunteer, PRs are always welcome. 
 After making the changes commit the files to the development branch and open a PR.
