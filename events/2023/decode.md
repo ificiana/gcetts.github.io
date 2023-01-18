@@ -12,10 +12,10 @@ redirect_from:
 
 <figure class="image is-4by3">
     <img src="{{ site.cdn |append: '/events/' 
-                        |append: event.year |append:'/'
+                        |append: '2023' |append:'/'
                         |append: 'decode23' |append:'/'
-                        |append: event.img }}"
-            alt="{{ event.title }}">
+                        |append: 'decode23-banner.jpg' }}"
+            alt="Decode 2023">
 </figure>
 
 Ready to solve fun, challenging problems? Coding Ninjas is hosting the "Decode<GCETTS>" in collaboration with "Government College of Engineering and Textile Technology - Serampore", giving you the opportunity to test and grow your coding abilities while getting a sample of the programming skills needed for a technical career. 
