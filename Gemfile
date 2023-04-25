@@ -17,7 +17,7 @@ gem "github-pages", group: :jekyll_plugins
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
 install_if -> { RUBY_PLATFORM =~ %r!mingw|mswin|java! } do
-  gem "tzinfo", "~> 1.2"
+  gem "tzinfo", "~> 2.0"
   gem "tzinfo-data"
 end
 
@@ -32,7 +32,7 @@ gem "kramdown-parser-gfm"
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
-gem "webrick", "~> 1.7"
+gem "webrick", "~> 1.8"
 
 # https://github.com/advisories/GHSA-j96r-xvjq-r9pg
 gem "activesupport", "> 4.2"
