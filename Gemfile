@@ -32,7 +32,7 @@ gem "kramdown-parser-gfm"
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
-gem "webrick", "~> 1.7"
+gem "webrick", "~> 1.8"
 
 # https://github.com/advisories/GHSA-j96r-xvjq-r9pg
 gem "activesupport", "> 4.2"
