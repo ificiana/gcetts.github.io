@@ -19,9 +19,9 @@ description: >-
   Bre@kTheLoop, GCETTS is a community of coding and CompSci enthusiasts 
   who believes in open learning and sharing knowledge.
 baseurl: ""
-url: "https://btl-gcetts.github.io"
+url: "https://gcetts.github.io"
 cdn: "https://m1-btlcdn.netlify.app"
-github_username:  btl-gcetts
+github_username:  gcetts
 email: breaktheloop01@gmail.com
 
 
